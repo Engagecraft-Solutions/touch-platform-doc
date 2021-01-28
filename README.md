@@ -36,6 +36,7 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="mobile-web-app-capable" content="yes">
   <title>PlayGround</title>
   <script>
     !function(t, e, n, i, o, c) {
