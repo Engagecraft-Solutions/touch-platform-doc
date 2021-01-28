@@ -17,7 +17,6 @@ By following the 2 steps below, you will be set up and ready to go:
   }(window, document, 'script', 'ecTouchPlatform');
   window.ecTouchPlatform({
     clientID: 'bRUVL8o0KiMIDRBKojxECtTWp',
-    loadPolyfillsModule: true,
   });
 </script>
 ```
@@ -26,10 +25,8 @@ Initial settings:
 Attribute | Default | Required | Description
 ------------ | ------------- | ------------- | -------------
 clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
-loadPolyfillsModule  | true | false | To run web components (widgets) in all browsers v1 polyfills are needed. If polyfills already is loaded from client side, set loadPolyfillsModule to false
 
 **STEP 2 (Each time you wish to publish a widget)**: Include this tag anywhere in your main pages, where you want to include the widget. Simply copy the widget embed code from the Touch platform and insert it in the <BODY> tag.
-  
   
 ### Example of STEP 1 and STEP 2: ###
 
@@ -48,7 +45,6 @@ loadPolyfillsModule  | true | false | To run web components (widgets) in all bro
     }(window, document, 'script', 'ecTouchPlatform');
     window.ecTouchPlatform({
       clientID: 'bRUVL8o0KiMIDRBKojxECtTWp',
-      loadPolyfillsModule: true,
     });
   </script>
 </head>
