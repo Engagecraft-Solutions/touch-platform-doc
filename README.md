@@ -6,10 +6,7 @@ To be able to publish from the Touch platform to your website or app, requires a
 
 By following the 2 steps below, you will be set up and ready to go:
 
-**STEP 1 (To be done once)**: Add the below code, if you want to be able to use widgets on your platform. You can either add this per page or put it in a central place (depending on your CMS setup).  We recommend putting this in a central place by inserting the script in the HEAD tag. This script will create a new custom HTML element called: 
-```javascript 
-<ec-touch-global></ec-touch-global>
-```
+**STEP 1 (To be done once)**: Add the below code, if you want to be able to use widgets on your platform. You can either add this per page or put it in a central place (depending on your CMS setup).  We recommend putting this in a central place by inserting the script in the HEAD tag.
 
 ```javascript
 <link rel="preconnect" href="https://widgets.touch.global">
