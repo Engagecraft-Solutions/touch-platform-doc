@@ -54,3 +54,6 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
 </body>
 </html>
 ```
+### LIVE Example (updated 28 Jan 2021): ###
+
+https://jsfiddle.net/EC_Touch_Platform/aktuczh5/
