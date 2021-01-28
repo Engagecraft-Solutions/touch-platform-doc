@@ -6,9 +6,13 @@ To be able to publish from the Touch platform to your website or app, requires a
 
 By following the 2 steps below, you will be set up and ready to go:
 
-**STEP 1 (To be done once)**: Add the below code, if you want to be able to use widgets on your platform. You can either add this per page or put it in a central place (depending on your CMS setup).  We recommend putting this in a central place by inserting the script in the <HEAD> tag. This script will create a new custom HTML element called: <ec-touch-global></ec-touch-global>
+**STEP 1 (To be done once)**: Add the below code, if you want to be able to use widgets on your platform. You can either add this per page or put it in a central place (depending on your CMS setup).  We recommend putting this in a central place by inserting the script in the HEAD tag. This script will create a new custom HTML element called: 
+```javascript 
+<ec-touch-global></ec-touch-global>
+```
 
 ```javascript
+<link rel="preconnect" href="https://widgets.touch.global">
 <script>
   !function(t, e, n, i, o, c) {
     t[i] = t[i] || function() {
@@ -26,7 +30,7 @@ Attribute | Default | Required | Description
 ------------ | ------------- | ------------- | -------------
 clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
 
-**STEP 2 (Each time you wish to publish a widget)**: Include this tag anywhere in your main pages, where you want to include the widget. Simply copy the widget embed code from the Touch platform and insert it in the <BODY> tag.
+**STEP 2 (Each time you wish to publish a widget)**: Include this tag anywhere in your main pages, where you want to include the widget. Simply copy the widget embed code from the Touch platform and insert it in the BODY tag.
   
 ### Example of STEP 1 and STEP 2: ###
 
@@ -37,6 +41,7 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="mobile-web-app-capable" content="yes">
+  <link rel="preconnect" href="https://widgets.touch.global">
   <title>PlayGround</title>
   <script>
     !function(t, e, n, i, o, c) {
