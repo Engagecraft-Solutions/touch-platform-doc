@@ -32,12 +32,12 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
 
 ```javascript
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="mobile-web-app-capable" content="yes">
-  <title>PlayGround</title>
+  <title>Touch Widget Implementation</title>
     
   <link rel="preconnect" href="https://widgets.touch.global">
   
