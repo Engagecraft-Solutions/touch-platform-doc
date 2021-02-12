@@ -68,8 +68,8 @@ https://jsfiddle.net/EC_Touch_Platform/aktuczh5/
 
 If you want to deliver a web application (or just a web page) as a part of a client application, you can do it using WebView. The WebView class is an extension of Android's / iOS View class that allows you to display web pages as a part of your activity layout. It does not include any features of a fully developed web browser, such as navigation controls or an address bar. All that WebView does, by default, is show a web page.
 
-#### using Android System WebView
+#### Implementation using Android System WebView
 coming soon...
 
-#### using iOS System WebView
+#### Implementation using iOS System WebView
 coming soon...
