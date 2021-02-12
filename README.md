@@ -66,8 +66,10 @@ https://jsfiddle.net/EC_Touch_Platform/aktuczh5/
 
 
 ## Touch Widget Implementation || using Android System WebView
-...
+
+If you want to deliver a web application (or just a web page) as a part of a client application, you can do it using WebView. The WebView class is an extension of Android's View class that allows you to display web pages as a part of your activity layout. It does not include any features of a fully developed web browser, such as navigation controls or an address bar. All that WebView does, by default, is show a web page.
 
 ## Touch Widget Implementation || using iOS System WebView
-...
+
+A web view loads and displays rich web content, such as embedded HTML and websites, directly within your app. Mail uses a web view, for example, to show HTML content in messages.
 
