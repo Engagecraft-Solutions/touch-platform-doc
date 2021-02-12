@@ -2,6 +2,8 @@
 
 ### Touch Widget Implementation || using web-component
 
+[What are web components?](https://www.webcomponents.org/introduction) 
+
 To be able to publish from the Touch platform to your website or app, requires a simple script of web-component to be added to your page.
 
 By following the 2 steps below, you will be set up and ready to go:
@@ -58,11 +60,6 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
 </body>
 </html>
 ```
-
-
-[What are web components?](https://www.webcomponents.org/introduction) 
-
-
 ### LIVE Example (updated 28 Jan 2021): ###
 
 https://jsfiddle.net/EC_Touch_Platform/aktuczh5/
