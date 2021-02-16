@@ -71,8 +71,7 @@ Methods and events is useful for making a communication between your SSO provide
 
 Name | Description
 ------------ | -------------
-showLoginScreen | Description
-showRegisterScreen | Description
+showLogin | A method which handles the login callback. Use this method when you need to display the login modal. Method will be called from the widget side, depends on its logic.
 isLoggedIn | Description
 getUserID | Description
 
@@ -95,13 +94,9 @@ onLogout | Description
   window.ecTouchPlatform({
       clientID: 'bRUVL8o0KiMIDRBKojxECtTWp',
       methods: {
-          showLoginScreen: function() {
+          showLogin: function() {
               // your SSO logic goes here....
               return window.yourSSOProvider.showLoginScreen();
-          },
-          showRegisterScreen: function() {
-              // your SSO logic goes here...
-              return window.yourSSOProvider.showRegisterScreen();
           },
           isLoggedIn: function() {
               // your SSO logic goes here...
