@@ -96,20 +96,17 @@ onLogout | Description
       methods: {
           showLogin: function() {
               // your SSO logic goes here....
-              return window.yourSSOProvider.showLoginScreen();
           },
           isLoggedIn: function() {
               // your SSO logic goes here...
-              return window.yourSSOProvider.isLogged();
           },
           getUserID: function() {
               // your SSO logic goes here...
-              return window.yourSSOProvider.getCurrentUser();
           },
       },
       events: function() {
           // your SSO logic goes here...
-          const eventEmitter = window.yourSSOProvider.getEventEmitter();
+          const yourEventEmitter = window.yourSSOProvider.getEventEmitter();
 
           eventEmitter.on('login', function() {
               // Fire onLogin event
