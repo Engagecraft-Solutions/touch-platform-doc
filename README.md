@@ -28,7 +28,7 @@ Attribute | Default | Required | Description
 ------------ | ------------- | ------------- | -------------
 clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
 
-**STEP 2 (Each time you wish to publish a widget)**: Include this tag anywhere in your main pages, where you want to include the widget. Simply copy the widget embed code from the Touch platform and insert it in the BODY tag.
+**STEP 2 (Each time you wish to publish a widget)**: Include this tag anywhere in your HTML pages, where you want to include the widget. Simply copy the widget embed code from the Touch platform and insert it in the BODY tag. The above script registers new HTML element called "ec-touch-global" and this new element can be used anywhere in your HTML page.
   
 ### Example of STEP 1 and STEP 2: ###
 
@@ -125,12 +125,10 @@ onLogout | Should be fired whenever a user logs out from SSO
 ```
 
 
-## Touch Widget Implementation || using WebView
+## Touch Widget Implementation || In-App
 
-If you want to deliver a web application (or just a web page) as a part of a client application, you can do it using WebView. The WebView class is an extension of Android's / iOS View class that allows you to display web pages as a part of your activity layout. It does not include any features of a fully developed web browser, such as navigation controls or an address bar. All that WebView does, by default, is show a web page.
+#### Implementation using In-App Android Integration
+The regular Javascrip embed code of a unit, once added to the article or webpage in your CMS will also work in In-App Android. The same is true for a header tag and playlist integration.
 
-#### Implementation using Android System WebView
-coming soon...
-
-#### Implementation using iOS System WebView
-coming soon...
+#### Implementation using In-App iOS Integration
+The regular Javascrip embed code of a unit, once added to the article or webpage in your CMS will also work in In-App iOS. The same is true for a header tag and playlist integration.
