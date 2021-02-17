@@ -63,6 +63,67 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
 #### LIVE Example (updated 28 Jan 2021): ###
 https://jsfiddle.net/EC_Touch_Platform/aktuczh5/
 
+## Methods and Events ##
+
+Methods and events is useful for making a communication between your SSO provider and Touch platform.
+
+#### Methods ####
+
+Name | Description | A value must be returned
+------------ | ------------- | -------------
+showLogin | A method which handles the login callback. Use this method when you need to display the login modal. Method will be called from the widget side, depends on its logic. | void
+isLoggedIn | Determines whether the current user is authenticated. | Boolean - true if the user has been authenticated; otherwise, false.
+getUserID | Retrieve logged in user ID from session | String or Integer
+
+#### Events ####
+
+Name | Description
+------------ | -------------
+onLogin | Description
+onLogout | Description
+
+### Example ###
+
+```javascript
+<script>
+  !function(t, e, n, i, o, c) {
+    t[i] = t[i] || function() {
+      (t[i].init = t[i].init || []).push(arguments[0]);
+    }, o = e.createElement(n), c = e.getElementsByTagName(n)[0], o.defer = 1, o.async = 1, o.src = 'https://widgets.touch.global/sdk/index.js', c.parentNode.insertBefore(o, c);
+  }(window, document, 'script', 'ecTouchPlatform');
+  window.ecTouchPlatform({
+      clientID: 'bRUVL8o0KiMIDRBKojxECtTWp',
+      methods: {
+          showLogin: function() {
+              // your SSO provider logic goes here....
+          },
+          isLoggedIn: function() {
+              // your SSO provider logic goes here...
+          },
+          getUserID: function() {
+              // your SSO provider logic goes here...
+          },
+      },
+      events: function() {
+          // your SSO provider logic goes here... 
+          // for example:
+          
+          const yourEventEmitter = window.yourSSOProvider.getEventEmitter();
+
+          eventEmitter.on('login', function() {
+              // Fire onLogin event
+              window.ecTouchPlatform.events.emit('onLogin');
+          });
+
+          eventEmitter.on('logout', function() {
+              // Fire onLogout event
+              window.ecTouchPlatform.events.emit('onLogout');
+          });
+      },
+  });
+  </script>
+```
+
 
 ## Touch Widget Implementation || using WebView
 
