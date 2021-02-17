@@ -123,7 +123,7 @@ onLogout | Should be fired whenever a user logs out from SSO
   });
   </script>
 ```
-Even though, Touch is not providing separate solution on the SSO integration but rather adapts to the client’s solution, the engagement data we collect gets back to the client in the automated way using rest API. That is, client would call (using client’s unique credentials) our rest API in order to get the data we collect.
+Even though, Touch is not providing separate solution on the SSO integration but rather adapts to the client’s solution, the engagement data we collect gets back to the client in the automated way using rest API. That is, client would just nee to call (using client’s unique credentials) our rest API in order to get the data we collect.
 
 ## Touch Widget Implementation || In-App
 
