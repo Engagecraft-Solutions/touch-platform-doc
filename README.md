@@ -79,7 +79,7 @@ getUserID | Retrieve logged in user ID from session | String or Integer
 
 Name | Description
 ------------ | -------------
-onLogin | Should be fired whenever a user successfully logs in.
+onLogin | Should be fired whenever a user successfully logs in
 onLogout | Should be fired whenever a user logs out from SSO
 
 ### Example ###
