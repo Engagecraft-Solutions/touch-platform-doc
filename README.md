@@ -65,7 +65,7 @@ https://jsfiddle.net/EC_Touch_Platform/aktuczh5/
 
 ## Methods and Events ##
 
-Methods and events is useful for making a communication between your SSO provider and Touch platform.
+Touch does not save the user on Touch side, meaning that it saves only indentificator of the client user. Therefore, Methods and Events are needed to create a communication between your SSO provider and Touch platform. We provide list of Methods which we will initiate as a call from widgets side in order to get their values dependant on the SSO provider logic. Please see below tables with the list of Methods and Events.
 
 #### Methods ####
 
