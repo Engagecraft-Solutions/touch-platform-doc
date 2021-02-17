@@ -69,11 +69,11 @@ Methods and events is useful for making a communication between your SSO provide
 
 #### Methods ####
 
-Name | Description
------------- | -------------
-showLogin | A method which handles the login callback. Use this method when you need to display the login modal. Method will be called from the widget side, depends on its logic.
-isLoggedIn | Description
-getUserID | Description
+Name | Description | A value must be returned
+------------ | ------------- | -------------
+showLogin | A method which handles the login callback. Use this method when you need to display the login modal. Method will be called from the widget side, depends on its logic. | void
+isLoggedIn | Determines whether the current user is authenticated. | Boolean - true if the user has been authenticated; otherwise, false.
+getUserID | Retrieve logged in user ID from session | String or Integer
 
 #### Events ####
 
