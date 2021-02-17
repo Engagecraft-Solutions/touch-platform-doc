@@ -105,7 +105,9 @@ onLogout | Description
           },
       },
       events: function() {
-          // your SSO provider logic goes here...
+          // your SSO provider logic goes here... 
+          // for example:
+          
           const yourEventEmitter = window.yourSSOProvider.getEventEmitter();
 
           eventEmitter.on('login', function() {
