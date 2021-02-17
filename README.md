@@ -127,6 +127,8 @@ Even though, Touch is not providing separate solution on the SSO integration but
 
 ## Touch Widget Implementation || In-App
 
+In order to deliver a web application (or just a web page) as a part of a client application, it is done by using WebView. The WebView class is an extension of Android's / iOS View class that allows to display web pages as a part of the activity layout. 
+
 #### Implementation using In-App Android Integration
 The regular Javascrip embed code of a unit, once added to the article or webpage in your CMS will also work in In-App Android. The same is true for a header tag and playlist integration.
 
