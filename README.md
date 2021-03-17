@@ -65,7 +65,10 @@ https://jsfiddle.net/EC_Touch_Platform/aktuczh5/
 
 ## Methods and Events ##
 
-Touch does not save the user on Touch side, meaning that it saves only indentificator of the client user. Therefore, Methods and Events are needed to create a communication between your SSO provider and Touch platform. We provide list of Methods which we will initiate as a call from widgets side in order to get their values dependant on the SSO provider logic. Please see below tables with the list of Methods and Events.
+The Touch Platform uses an ‘indentificator’ to identify a client’s user. The identificator is a unique [attribute that identifies the user ] that is provided by the client.
+‘Methods’ and ‘Events’ are required for the Touch Platform to communicate with a client’s SSO solution to ensure that a user of content created on the Touch Platform is recognised by the client’s SSO solution.
+The table below lists the Methods the Touch Platform initiates as calls from widgets  to obtain values dependant on the client’s SSO provider logic.
+Please refer to the tables below see below tables with the list of Methods and Events.
 
 #### Methods ####
 
@@ -74,6 +77,8 @@ Name | Description | A value must be returned
 showLogin | A method which handles the login callback. Use this method when you need to display the login modal. Method will be called from the widget side, depends on its logic. | void
 isLoggedIn | Determines whether the current user is authenticated. | Boolean - true if the user has been authenticated; otherwise, false.
 getUserID | Retrieve logged in user ID from session | String or Integer
+
+The table below lists the Events [Events inform the widgets for them to know that user is logged in or logged out ().].
 
 #### Events ####
 
@@ -123,11 +128,15 @@ onLogout | Should be fired whenever a user logs out from SSO
   });
   </script>
 ```
-Even though, Touch is not providing separate solution on the SSO integration but rather adapts to the client’s solution, the engagement data we collect gets back to the client in the automated way using rest API. That is, client would just nee to call (using client’s unique credentials) our rest API in order to get the data we collect.
+
+
+## Data capture and return to the client
+
+Users’ engagement data collected on the Touch Platform is sent back to the client when the client requests this data via a rest API (using a client’s unique credentials).
 
 ## Touch Widget Implementation || In-App
 
-In order to deliver a web application (or just a web page) as a part of a client application, it is done by using WebView. The WebView class is an extension of Android's / iOS View class that allows to display web pages as a part of the activity layout. 
+Touch content is [published/delivered] using WebViews. The WebView class is an extension of the Android and iOS View Class that allows web pages to be displayed in-App.
 
 #### Implementation using In-App Android Integration
 The regular Javascrip embed code of a unit, once added to the article or webpage in your CMS will also work in In-App Android. The same is true for a header tag and playlist integration.
