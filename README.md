@@ -67,11 +67,11 @@ https://jsfiddle.net/EC_Touch_Platform/aktuczh5/
 
 Touch content is [published/delivered] using WebViews. The WebView class is an extension of the Android and iOS View Class that allows web pages to be displayed in-App.
 
-Implementation using In-App Android Integration
+## Implementation using In-App Android Integration
 
 The regular Javascrip embed code of a unit, once added to the article or webpage in your CMS will also work in In-App Android. The same is true for a header tag and playlist integration.
 
-Implementation using In-App iOS Integration
+## Implementation using In-App iOS Integration
 
 The regular Javascrip embed code of a unit, once added to the article or webpage in your CMS will also work in In-App iOS. The same is true for a header tag and playlist integration.
 
