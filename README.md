@@ -56,7 +56,7 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
   
 </head>
 <body>
-  <ec-touch-global hash="3-QwbtYJWpUUxREoE"></ec-touch-global>
+  <ec-touch-global id="3-QwbtYJWpUUxREoE"></ec-touch-global>
 </body>
 </html>
 ```
