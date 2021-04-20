@@ -10,17 +10,16 @@ Please refer to the tables below see below tables with the list of Methods and E
 Name | Description | A value must be returned
 ------------ | ------------- | -------------
 showLogin | A method which handles the login callback. Use this method when you need to display the login modal. Method will be called from the widget side, depends on its logic. | void
-isLoggedIn | Determines whether the current user is authenticated. | Boolean - true if the user has been authenticated; otherwise, false.
 getUserID | Retrieve logged in user ID from session | String or Integer
 
 The table below lists the Events [Events inform the widgets for them to know that user is logged in or logged out ().].
 
 #### Events ####
 
-Name | Description
------------- | -------------
-onLogin | Should be fired whenever a user successfully logs in
-onLogout | Should be fired whenever a user logs out from SSO
+Name | Description | Params
+------------ | ------------- | -------------
+onLogin | Should be fired whenever a user successfully logs in | userID
+onLogout | Should be fired whenever a user logs out from SSO | -
 
 ### Example ###
 
@@ -37,9 +36,6 @@ onLogout | Should be fired whenever a user logs out from SSO
           showLogin: function() {
               // your SSO provider logic goes here....
           },
-          isLoggedIn: function() {
-              // your SSO provider logic goes here...
-          },
           getUserID: function() {
               // your SSO provider logic goes here...
           },
@@ -50,9 +46,9 @@ onLogout | Should be fired whenever a user logs out from SSO
           
           const yourEventEmitter = window.yourSSOProvider.getEventEmitter();
 
-          eventEmitter.on('login', function() {
+          eventEmitter.on('login', function(user) {
               // Fire onLogin event
-              window.ecTouchPlatform.events.emit('onLogin');
+              window.ecTouchPlatform.events.emit('onLogin', {userID: user.id});
           });
 
           eventEmitter.on('logout', function() {
