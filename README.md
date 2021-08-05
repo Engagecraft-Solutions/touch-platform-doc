@@ -13,12 +13,14 @@ By following the 2 steps below, you will be set up and ready to go:
 ```javascript
 <script>
   !function(t, e, n, i, o, c) {
-    t[i] = t[i] || function() {
-      (t[i].init = t[i].init || []).push(arguments[0]);
-    }, o = e.createElement(n), c = e.getElementsByTagName(n)[0], o.defer = 1, o.async = 1, o.src = 'https://widgets.touch.global/sdk/index.js', c.parentNode.insertBefore(o, c);
-  }(window, document, 'script', 'ecTouchPlatform');
+    if (!t[i]) {
+      t[i] = t[i] || function() {
+        (t[i].init = t[i].init || []).push(arguments[0]);
+      }, o = e.createElement(n), c = e.getElementsByTagName(n)[0], o.defer = 1, o.async = 1, o.src = "https://widgets.touch.global/sdk/index.js", c.parentNode.insertBefore(o, c);
+    }
+  }(window, document, "script", "ecTouchPlatform");
   window.ecTouchPlatform({
-    clientID: 'bRUVL8o0KiMIDRBKojxECtTWp',
+    clientID: "bRUVL8o0KiMIDRBKojxECtTWp"
   });
 </script>
 ```
