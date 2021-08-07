@@ -18,8 +18,7 @@ By following the 2 steps below, you will be set up and ready to go:
         (t[i].init = []).push(arguments[0]);
       }, o = e.createElement(n), c = e.getElementsByTagName(n)[0], o.defer = 1, o.async = 1, o.src = "https://widgets.touch.global/sdk/index.js", c.parentNode.insertBefore(o, c);
       t[i]({
-        clientID: "bRUVL8o0KiMIDRBKojxECtTWp",
-        loadWidgetsModule: false
+        clientID: "bRUVL8o0KiMIDRBKojxECtTWp"
       });
     }
   }(window, document, "script", "ecTouchPlatform");
@@ -53,8 +52,7 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
           (t[i].init = []).push(arguments[0]);
         }, o = e.createElement(n), c = e.getElementsByTagName(n)[0], o.defer = 1, o.async = 1, o.src = "https://widgets.touch.global/sdk/index.js", c.parentNode.insertBefore(o, c);
         t[i]({
-          clientID: "bRUVL8o0KiMIDRBKojxECtTWp",
-          loadWidgetsModule: false
+          clientID: "bRUVL8o0KiMIDRBKojxECtTWp"
         });
       }
     }(window, document, "script", "ecTouchPlatform");
