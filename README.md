@@ -64,8 +64,8 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
 </body>
 </html>
 ```
-#### LIVE Example (updated 28 Jan 2021): ###
-https://jsfiddle.net/EC_Touch_Platform/aktuczh5/
+#### LIVE Example (updated 15 Sep 2021): ###
+https://jsfiddle.net/8je1tyhn/
 
 ## Touch Widget Implementation || In-App
 
