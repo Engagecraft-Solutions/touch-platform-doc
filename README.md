@@ -65,7 +65,7 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
 </html>
 ```
 #### LIVE Example (updated 15 Sep 2021): ###
-https://jsfiddle.net/8je1tyhn/
+https://jsfiddle.net/wuvqochg
 
 ## Touch Widget Implementation || In-App
 
