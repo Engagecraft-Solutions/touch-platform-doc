@@ -72,14 +72,8 @@ https://jsfiddle.net/8je1tyhn/
 Touch content is [published/delivered] using WebViews. The WebView class is an extension of the Android and iOS View Class that allows web pages to be displayed in-App.
 
 ### Implementation using In-App Android Integration
-
-The regular Javascrip embed code of a unit, once added to the article or webpage in your CMS will also work in In-App Android. The same is true for a header tag and playlist integration.
-
 [Documentation](https://github.com/Engagecraft-Solutions/touch-platform-sdk-android) 
 
 ### Implementation using In-App iOS Integration
-
-The regular Javascrip embed code of a unit, once added to the article or webpage in your CMS will also work in In-App iOS. The same is true for a header tag and playlist integration.
-
 [Documentation](https://github.com/Engagecraft-Solutions/touch-platform-widgets-ios) 
 
