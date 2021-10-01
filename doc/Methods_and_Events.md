@@ -60,17 +60,3 @@ onLogout | Should be fired whenever a user logs out from SSO | -
   </script>
 ```
 
-
-## Data capture and return to the client
-
-Users’ engagement data collected on the Touch Platform is sent back to the client when the client requests this data via a rest API (using a client’s unique credentials).
-
-## Touch Widget Implementation || In-App
-
-Touch content is [published/delivered] using WebViews. The WebView class is an extension of the Android and iOS View Class that allows web pages to be displayed in-App.
-
-#### Implementation using In-App Android Integration
-The regular Javascrip embed code of a unit, once added to the article or webpage in your CMS will also work in In-App Android. The same is true for a header tag and playlist integration.
-
-#### Implementation using In-App iOS Integration
-The regular Javascrip embed code of a unit, once added to the article or webpage in your CMS will also work in In-App iOS. The same is true for a header tag and playlist integration.
