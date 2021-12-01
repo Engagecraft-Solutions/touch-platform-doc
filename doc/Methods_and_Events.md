@@ -39,6 +39,15 @@ onLogout | Should be fired whenever a user logs out from SSO | -
           getUserID: function() {
               // your SSO provider logic goes here...
           },
+          getUserProfile: function() {
+              // your SSO provider logic goes here...
+          },
+          isUserLoggedIn: function() {
+              // your SSO provider logic goes here...
+          },
+          onEvent: function(event) {
+              // your SSO provider logic goes here...
+          },
       },
       events: function() {
           // your SSO provider logic goes here... 
@@ -46,9 +55,9 @@ onLogout | Should be fired whenever a user logs out from SSO | -
           
           const yourEventEmitter = window.yourSSOProvider.getEventEmitter();
 
-          eventEmitter.on('login', function(user) {
+          eventEmitter.on('login', function() {
               // Fire onLogin event
-              window.ecTouchPlatform.events.emit('onLogin', { userID: user.id });
+              window.ecTouchPlatform.events.emit('onLogin');
           });
 
           eventEmitter.on('logout', function() {
