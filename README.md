@@ -67,6 +67,9 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
 #### LIVE Example (updated 15 Sep 2021): ###
 https://jsfiddle.net/wuvqochg
 
+## Methods and Events
+[Documentation](https://github.com/Engagecraft-Solutions/touch-platform-doc/blob/main/doc/Methods_and_Events.md) 
+
 ## Touch Widget Implementation || In-App
 
 Touch content is [published/delivered] using WebViews. The WebView class is an extension of the Android and iOS View Class that allows web pages to be displayed in-App.
