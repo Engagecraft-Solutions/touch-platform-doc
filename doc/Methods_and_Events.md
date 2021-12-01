@@ -11,6 +11,9 @@ Name | Description | A value must be returned
 ------------ | ------------- | -------------
 showLogin | A method which handles the login callback. Use this method when you need to display the login modal. Method will be called from the widget side, depends on its logic. | void
 getUserID | Retrieve logged in user ID from session | String or Integer
+getUserProfile | | 
+isUserLoggedIn | | 
+onEvent | | 
 
 The table below lists the Events [Events inform the widgets for them to know that user is logged in or logged out ().].
 
@@ -46,7 +49,7 @@ onLogout | Should be fired whenever a user logs out from SSO | -
               // your SSO provider logic goes here...
           },
           onEvent: function(event) {
-              // your SSO provider logic goes here...
+              // your logic goes here...
           },
       },
       events: function() {
