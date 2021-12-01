@@ -11,9 +11,9 @@ Name | Description | A value must be returned
 ------------ | ------------- | -------------
 showLogin | A method which handles the login callback. Use this method when you need to display the login modal. Method will be called from the widget side, depends on its logic. | void
 getUserID | Retrieve logged in user ID from session | String or Integer
-getUserProfile | | 
-isUserLoggedIn | | 
-onEvent | | 
+getUserProfile | Retrieve logged in user info from session | Object
+isUserLoggedIn | Determines whether the current visitor is a logged in user | Boolean
+onEvent | [in progress] | 
 
 The table below lists the Events [Events inform the widgets for them to know that user is logged in or logged out ().].
 
