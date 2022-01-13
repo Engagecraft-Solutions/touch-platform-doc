@@ -1,8 +1,8 @@
 ## Methods and Events ##
 
 Methods and Events are required for the Touch Platform to communicate with a client’s SSO solution to ensure that a user of content created on the Touch Platform is recognised by the client’s SSO solution.
-The table below lists the Methods the Touch Platform initiates as calls from widgets  to obtain values dependant on the client’s SSO provider logic.
-Please refer to the tables below with the list of Methods and Events.
+The table below lists the Methods the Touch Platform initiates as calls from widgets to obtain values dependant on the client’s SSO provider logic.
+Please refer to the tables below.
 
 #### Methods ####
 
@@ -93,4 +93,7 @@ onLogout | Event should be fired whenever a user logs out | -
 
 #### Debug MODE ###
 in progress
+```javascript
+<ec-touch-global id="hash" debugEvents="true"></ec-touch-global>
+```
 
