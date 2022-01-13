@@ -14,7 +14,8 @@ getUserProfile | Retrieve logged in user info from session - ```{name: "", email
 isUserLoggedIn | Determines whether the current visitor is a logged in user | Boolean
 onEvent | [in progress] | 
 
-The table below lists the Events [Events inform the widgets for them to know that user is logged in or logged out ().].
+
+The table below lists the Events [Events inform the widgets for them to know that user is logged in or logged out].
 
 #### Events ####
 
