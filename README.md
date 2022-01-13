@@ -64,7 +64,7 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
 </body>
 </html>
 ```
-#### LIVE Example (updated 15 Sep 2021): ###
+#### LIVE Example (updated 13 Jan 2022): ###
 https://jsfiddle.net/wuvqochg
 
 ## Methods and Events
