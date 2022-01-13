@@ -20,7 +20,9 @@ The table below lists the Events [Events inform the widgets for them to know tha
 
 Name | Description | Params
 ------------ | ------------- | -------------
-onLogin | Should be fired whenever a user successfully logs in | -
+onLoginSuccess | Should be fired whenever a user successfully logs in | -
+onRegistrationSuccess | | -
+onCancel | | -
 onLogout | Should be fired whenever a user logs out from SSO | -
 
 ### Example ###
@@ -59,12 +61,17 @@ onLogout | Should be fired whenever a user logs out from SSO | -
 
           eventEmitter.on('login', function() {
               // Fire onLogin event
-              window.ecTouchPlatform.events.emit('onLogin');
+              window.ecTouchPlatform.events.emit('onLoginSuccess');
           });
           
-          eventEmitter.on('cancelLogin', function() {
+         eventEmitter.on('registration', function() {
+              // Fire onLogin event
+              window.ecTouchPlatform.events.emit('onRegistrationSuccess');
+          });
+          
+          eventEmitter.on('cancel', function() {
               // Fire onCancelLogin event
-              window.ecTouchPlatform.events.emit('onCancelLogin');
+              window.ecTouchPlatform.events.emit('onCancel');
           });
 
           eventEmitter.on('logout', function() {
