@@ -21,7 +21,7 @@ The table below lists the Events [Events inform the widgets for them to know tha
 Name | Description | Params
 ------------ | ------------- | -------------
 onLoginSuccess | Should be fired whenever a user successfully logs in | -
-onRegistrationSuccess | | -
+onRegistrationSuccess | Should be fired after a successful registration | -
 onCancel | | -
 onLogout | Should be fired whenever a user logs out from SSO | -
 
