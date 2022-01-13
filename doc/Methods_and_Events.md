@@ -10,7 +10,7 @@ Name | Description | A value must be returned
 ------------ | ------------ | ------------
 showLogin | A method which handles the login callback. Use this method when you need to display the login modal. Method will be called from the widget side, depends on its logic. | void
 getUserID | Retrieve logged in user ID from session | String or Integer
-getUserProfile | Retrieve logged in user info from session - ```{ref_id: "", name: "", email: ""}``` | Object 
+getUserProfile | Retrieve logged in user info from session | User Object 
 isUserLoggedIn | Determines whether the current visitor is a logged in user | Boolean
 
 
@@ -18,10 +18,23 @@ isUserLoggedIn | Determines whether the current visitor is a logged in user | Bo
 
 Name | Description | Params
 ------------ | ------------- | -------------
-onLoginSuccess | Event should be fired whenever a user logs in successfully | -
-onCancel | [in progress] | -
+onLoginSuccess | Event should be fired whenever a user logs in successfully | User Object
+onCancel | Invoked when a auth is canceled | -
 onLogout | Event should be fired whenever a user logs out | -
 
+
+#### User Object Structure ####
+
+```javascript
+{
+    profile: {
+        ref_id: "",
+        name: "",
+        email: ""
+    }
+}
+```                  
+                                  
 ### Example ###
 
 ```javascript
@@ -58,7 +71,7 @@ onLogout | Event should be fired whenever a user logs out | -
 
           eventEmitter.on('onLoginSuccess', function() {
               // Fire onLoginSuccess event
-              window.ecTouchPlatform.events.emit('onLoginSuccess');
+              window.ecTouchPlatform.events.emit('onLoginSuccess', UserObject});
           });
           
           eventEmitter.on('onCancel', function() {
