@@ -60,17 +60,17 @@ onLogout | Should be fired whenever a user logs out from SSO | -
           const yourEventEmitter = window.yourSSOProvider.getEventEmitter();
 
           eventEmitter.on('login', function() {
-              // Fire onLogin event
+              // Fire onLoginSuccess event
               window.ecTouchPlatform.events.emit('onLoginSuccess');
           });
           
          eventEmitter.on('registration', function() {
-              // Fire onLogin event
+              // Fire onRegistrationSuccess event
               window.ecTouchPlatform.events.emit('onRegistrationSuccess');
           });
           
           eventEmitter.on('cancel', function() {
-              // Fire onCancelLogin event
+              // Fire onCancel event
               window.ecTouchPlatform.events.emit('onCancel');
           });
 
