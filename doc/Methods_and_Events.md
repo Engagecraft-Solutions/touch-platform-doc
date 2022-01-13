@@ -7,24 +7,20 @@ Please refer to the tables below with the list of Methods and Events.
 #### Methods ####
 
 Name | Description | A value must be returned
------------- | ------------- | -------------
+------------ | ------------ | ------------
 showLogin | A method which handles the login callback. Use this method when you need to display the login modal. Method will be called from the widget side, depends on its logic. | void
 getUserID | Retrieve logged in user ID from session | String or Integer
-getUserProfile | Retrieve logged in user info from session - ```{name: "", email: ""}``` | Object 
+getUserProfile | Retrieve logged in user info from session - ```{ref_id: "", name: "", email: ""}``` | Object 
 isUserLoggedIn | Determines whether the current visitor is a logged in user | Boolean
-onEvent | [in progress] | 
 
-
-The table below lists the Events [Events inform the widgets for them to know that user is logged in or logged out].
 
 #### Events ####
 
 Name | Description | Params
 ------------ | ------------- | -------------
-onLoginSuccess | Should be fired whenever a user successfully logs in | -
-onRegistrationSuccess | Should be fired after a successful registration | -
-onCancel | | -
-onLogout | Should be fired whenever a user logs out from SSO | -
+onLoginSuccess | Event should be fired whenever a user logs in successfully | -
+onCancel | [in progress] | -
+onLogout | Event should be fired whenever a user logs out | -
 
 ### Example ###
 
@@ -39,43 +35,38 @@ onLogout | Should be fired whenever a user logs out from SSO | -
       clientID: 'bRUVL8o0KiMIDRBKojxECtTWp',
       methods: {
           showLogin: function() {
-              // your SSO provider logic goes here....
+              // SSO provider logic goes here. For example:
+              // return window.yourInterface.viewLoginSignup();
           },
           getUserID: function() {
-              // your SSO provider logic goes here...
+              // SSO provider logic goes here. For example:
+              // return window.yourInterface.getCurrentUserID();
           },
           getUserProfile: function() {
-              // your SSO provider logic goes here...
+              // SSO provider logic goes here. For example:
+              // return window.yourInterface.getUserProfile();
           },
           isUserLoggedIn: function() {
-              // your SSO provider logic goes here...
-          },
-          onEvent: function(event) {
-              // your logic goes here...
+              // SSO provider logic goes here. For example:
+              // return window.yourInterface.isLoggedIn();
           },
       },
       events: function() {
-          // your SSO provider logic goes here... 
-          // for example:
+          // SSO provider logic goes here. For example:
           
-          const yourEventEmitter = window.yourSSOProvider.getEventEmitter();
+          const eventEmitter = window.yourInterface.getEventEmitter();
 
-          yourEventEmitter.on('login', function() {
+          eventEmitter.on('onLoginSuccess', function() {
               // Fire onLoginSuccess event
               window.ecTouchPlatform.events.emit('onLoginSuccess');
           });
           
-         yourEventEmitter.on('registration', function() {
-              // Fire onRegistrationSuccess event
-              window.ecTouchPlatform.events.emit('onRegistrationSuccess');
-          });
-          
-          yourEventEmitter.on('cancel', function() {
+          eventEmitter.on('onCancel', function() {
               // Fire onCancel event
               window.ecTouchPlatform.events.emit('onCancel');
           });
 
-          yourEventEmitter.on('logout', function() {
+          eventEmitter.on('onLogout', function() {
               // Fire onLogout event
               window.ecTouchPlatform.events.emit('onLogout');
           });
