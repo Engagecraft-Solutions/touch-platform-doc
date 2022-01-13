@@ -38,53 +38,6 @@ onLogout | Event should be fired whenever a user logs out | -
 ### Example ###
 
 ```javascript
-<script>
-  !function(t, e, n, i, o, c) {
-    t[i] = t[i] || function() {
-      (t[i].init = t[i].init || []).push(arguments[0]);
-    }, o = e.createElement(n), c = e.getElementsByTagName(n)[0], o.defer = 1, o.async = 1, o.src = 'https://widgets.touch.global/sdk/index.js', c.parentNode.insertBefore(o, c);
-  }(window, document, 'script', 'ecTouchPlatform');
-  window.ecTouchPlatform({
-      clientID: 'bRUVL8o0KiMIDRBKojxECtTWp',
-      methods: {
-          showLogin: function() {
-              // SSO provider logic goes here. For example:
-              // return window.yourInterface.viewLoginSignup();
-          },
-          getUserID: function() {
-              // SSO provider logic goes here. For example:
-              // return window.yourInterface.getCurrentUserID();
-          },
-          getUserProfile: function() {
-              // SSO provider logic goes here. For example:
-              // return window.yourInterface.getUserProfile();
-          },
-          isUserLoggedIn: function() {
-              // SSO provider logic goes here. For example:
-              // return window.yourInterface.isLoggedIn();
-          },
-      },
-      events: function() {
-          // SSO provider logic goes here. For example:
-          
-          const eventEmitter = window.yourInterface.getEventEmitter();
 
-          eventEmitter.on('onLoginSuccess', function() {
-              // Fire onLoginSuccess event
-              window.ecTouchPlatform.events.emit('onLoginSuccess', UserObject});
-          });
-          
-          eventEmitter.on('onCancel', function() {
-              // Fire onCancel event
-              window.ecTouchPlatform.events.emit('onCancel');
-          });
-
-          eventEmitter.on('onLogout', function() {
-              // Fire onLogout event
-              window.ecTouchPlatform.events.emit('onLogout');
-          });
-      },
-  });
-  </script>
 ```
 
