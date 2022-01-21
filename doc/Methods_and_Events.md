@@ -1,42 +1,61 @@
 ## Methods and Events ##
 
-Methods and Events are required for the Touch Platform to communicate with a client’s SSO solution to ensure that a user of content created on the Touch Platform is recognised by the client’s SSO solution.
-The table below lists the Methods the Touch Platform initiates as calls from widgets to obtain values dependant on the client’s SSO provider logic.
-Please refer to the tables below.
+Methods and Events are required for the Touch Platform to communicate with a client’s SSO solution to ensure that a user of content created on the Touch Platform is recognised by the client’s SSO solution. Please refer to the tables below.
 
 #### Methods ####
 
-Name | Description | A value must be returned
+Name | Description | Return Value
 ------------ | ------------ | ------------
-showLogin | A method which handles the login callback. Use this method when you need to display the login modal. Method will be called from the widget side, depends on its logic. | void
-getUserID | Retrieve logged in user ID from session | String or Integer
-getUserProfile | Retrieve logged in user info from session | UserObject 
+showLogin | Display the login/signup modal | void
 isUserLoggedIn | Determines whether the current visitor is a logged in user | Boolean
+getCurrentUserID | Retrieve logged in user ID from session | String or Integer
+getUserProfile | Retrieve logged in user info from session | <code>UserObject</code>
+doLogin | | <code>Promise<AuthSuccess &#124; AuthError></code>
+doSignup | | <code>Promise<AuthSuccess &#124; AuthError></code>
 
-
-#### Events ####
+#### Events #### 
 
 Name | Description | Params
 ------------ | ------------- | -------------
-onLoginSuccess | Event should be fired whenever a user logs in successfully | UserObject
+onLoginSuccess | Event should be fired whenever a user logs in successfully | <code>UserObject</code>
 onCancel | Invoked when a auth is canceled | -
 onLogout | Event should be fired whenever a user logs out | -
-
-
-#### UserObject Structure ####
+    
+#### <code>UserObject</code> ####
 
 ```javascript
 {
-    profile: {
+    user: {
         id: "",
         name: "",
         email: ""
-    },
-    additionalAttributes: {
     }
 }
-```                  
-                                  
+```   
+
+#### <code>AuthSuccess</code> ####
+
+```javascript
+{
+    success: true,
+    // UserObject
+    user: {
+        id: "",
+        name: "",
+        email: ""
+    }
+}
+```  
+ 
+#### <code>AuthError</code> ####
+
+```javascript
+{
+    success: false,
+    errorMessage: "An error occurred."
+}
+```     
+    
 #### Example ###
 
 ```javascript
@@ -50,21 +69,23 @@ onLogout | Event should be fired whenever a user logs out | -
         clientID: "bRUVL8o0KiMIDRBKojxECtTWp",
         methods: {
           showLogin: function() {
-            // SSO provider logic goes here. For example:
-            return window.yourInterface.viewLoginSignup();
+            window.yourInterface.viewLoginSignup();
           },
-          getUserID: function() {
-            // SSO provider logic goes here. For example:
+          getCurrentUserID: function() {
             return window.yourInterface.getCurrentUserID();
           },
           getUserProfile: function() {
-            // SSO provider logic goes here. For example:
             return window.yourInterface.getUserProfile();
           },
           isUserLoggedIn: function() {
-            // SSO provider logic goes here. For example:
             return window.yourInterface.isLoggedIn();
-          }
+          },
+          doLogin: function(credentials) {
+            return window.yourInterface.login(credentials.email, credentials.password);
+          },
+          doSignup: function(payload) {
+            return window.yourInterface.signup(payload.email, payload.password);
+          },
         },
         events: function() {
           // SSO provider logic goes here. For example:
@@ -90,10 +111,3 @@ onLogout | Event should be fired whenever a user logs out | -
   }(window, document, "script", "ecTouchPlatform");
 </script>
 ```
-
-#### Debug MODE ###
-in progress
-```javascript
-<ec-touch-global id="hash" debugEvents="true"></ec-touch-global>
-```
-
