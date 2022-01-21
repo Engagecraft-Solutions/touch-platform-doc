@@ -10,8 +10,8 @@ showLogin | Display the login/signup modal | void
 isUserLoggedIn | Determines whether the current visitor is a logged in user | Boolean
 getCurrentUserID | Retrieve logged in user ID from session | String or Integer
 getUserProfile | Retrieve logged in user info from session | <code>UserObject</code>
-doLogin | | <code>Promise<AuthSuccess &#124; AuthError></code>
-doSignup | | <code>Promise<AuthSuccess &#124; AuthError></code>
+doLogin | Initiate a login call to the SSO API | <code>Promise<AuthSuccess &#124; AuthFailed></code>
+doSignup | Initiate a signup call to the SSO API | <code>Promise<AuthSuccess &#124; AuthFailed></code>
 
 #### Events #### 
 
@@ -47,7 +47,7 @@ onLogout | Event should be fired whenever a user logs out | -
 }
 ```  
  
-#### <code>AuthError</code> ####
+#### <code>AuthFailed</code> ####
 
 ```javascript
 {
