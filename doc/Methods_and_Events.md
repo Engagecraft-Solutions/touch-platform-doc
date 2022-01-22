@@ -18,7 +18,6 @@ doSignup | Initiate a signup call to the SSO API | <code>Promise<AuthSuccess &#1
 Name | Description | Params
 ------------ | ------------- | -------------
 onLoginSuccess | Event should be fired whenever a user logs in successfully | <code>UserObject</code>
-onCancel | Invoked when a auth is canceled | -
 onLogout | Event should be fired whenever a user logs out | -
     
 #### <code>UserObject</code> ####
@@ -88,17 +87,12 @@ onLogout | Event should be fired whenever a user logs out | -
           },
         },
         events: function() {
-          // SSO provider logic goes here. For example:
+
           const eventEmitter = window.yourInterface.getEventEmitter();
 
           eventEmitter.on("onLoginSuccess", function() {
             // Fire onLoginSuccess event
             window.ecTouchPlatform.events.emit("onLoginSuccess", UserObject);
-          });
-
-          eventEmitter.on("onCancel", function() {
-            // Fire onCancel event
-            window.ecTouchPlatform.events.emit("onCancel");
           });
 
           eventEmitter.on("onLogout", function() {
