@@ -70,14 +70,14 @@ onLogout | Event should be fired whenever a user logs out | -
           showLogin: function() {
             window.yourInterface.viewLoginSignup();
           },
+          isUserLoggedIn: function() {
+            return window.yourInterface.isLoggedIn();
+          },
           getCurrentUserID: function() {
             return window.yourInterface.getCurrentUserID();
           },
           getUserProfile: function() {
             return window.yourInterface.getUserProfile();
-          },
-          isUserLoggedIn: function() {
-            return window.yourInterface.isLoggedIn();
           },
           doLogin: function(credentials) {
             return window.yourInterface.login(credentials.email, credentials.password);
