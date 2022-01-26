@@ -24,11 +24,9 @@ onLogout | Event should be fired whenever a user logs out | -
 
 ```javascript
 {
-    user: {
-        id: "",
-        name: "",
-        email: ""
-    }
+    id: "",
+    name: "",
+    email: ""
 }
 ```   
 
