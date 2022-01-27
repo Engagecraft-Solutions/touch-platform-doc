@@ -1,3 +1,5 @@
+**STEP 1**: Add the below code, if you want to be able to use widgets on your platform. You can either add this per page or put it in a central place (depending on your CMS setup).  We recommend putting this in a central place by inserting the script in the HEAD tag.
+
 ```javascript
 <script>
   !function(t, e, n, i, o, c) {
