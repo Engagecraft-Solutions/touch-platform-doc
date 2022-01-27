@@ -50,3 +50,6 @@
   }(window, document, "script", "ecTouchPlatform");
 </script>
 ```
+
+**STEP 2 (Each time you wish to publish a widget)**: Include this tag anywhere in your HTML pages, where you want to include the widget. Simply copy the widget embed code from the Touch platform and insert it in the BODY tag. The above script registers new HTML element called "ec-touch-global" and this new element can be used anywhere in your HTML page.
+
