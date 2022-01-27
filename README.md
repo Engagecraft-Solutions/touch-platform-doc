@@ -42,9 +42,7 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="mobile-web-app-capable" content="yes">
   <title>Touch Widget Implementation</title>
-    
-  <link rel="preconnect" href="https://widgets.touch.global">
-  
+      
   <script>
     !function(t, e, n, i, o, c) {
       if (!t[i]) {
