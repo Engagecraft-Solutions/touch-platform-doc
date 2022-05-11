@@ -17,18 +17,10 @@ By following the 2 steps below, you will be set up and ready to go:
       t[i] = function() {
         (t[i].init = []).push(arguments[0]);
       }, o = e.createElement(n), c = e.getElementsByTagName(n)[0], o.defer = 1, o.async = 1, o.src = "https://widgets.touch.global/sdk/index.js", c.parentNode.insertBefore(o, c);
-      t[i]({
-        clientID: "bRUVL8o0KiMIDRBKojxECtTWp"
-      });
     }
   }(window, document, "script", "ecTouchPlatform");
 </script>
 ```
-Initial settings:
-
-Attribute | Default | Required | Description
------------- | ------------- | ------------- | -------------
-clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
 
 **STEP 2 (Each time you wish to publish a widget)**: Include this tag anywhere in your HTML pages, where you want to include the widget. Simply copy the widget embed code from the Touch platform and insert it in the BODY tag. The above script registers new HTML element called "ec-touch-global" and this new element can be used anywhere in your HTML page.
   
@@ -49,9 +41,6 @@ clientID | bRUVL8o0KiMIDRBKojxECtTWp | true | demo client ID
         t[i] = function() {
           (t[i].init = []).push(arguments[0]);
         }, o = e.createElement(n), c = e.getElementsByTagName(n)[0], o.defer = 1, o.async = 1, o.src = "https://widgets.touch.global/sdk/index.js", c.parentNode.insertBefore(o, c);
-        t[i]({
-          clientID: "bRUVL8o0KiMIDRBKojxECtTWp"
-        });
       }
     }(window, document, "script", "ecTouchPlatform");
   </script>
