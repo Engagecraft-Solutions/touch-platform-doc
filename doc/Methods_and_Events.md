@@ -89,7 +89,7 @@ onLogout | Event should be fired whenever a user logs out | -
 
           eventEmitter.on("onLoginSuccess", function() {
             // Fire onLoginSuccess event
-            window.ecTouchPlatform.events.emit("onLoginSuccess", UserObject);
+            window.ecTouchPlatform.events.emit("onLoginSuccess", AuthSuccess);
           });
 
           eventEmitter.on("onLogout", function() {
