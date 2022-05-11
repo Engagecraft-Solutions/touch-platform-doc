@@ -63,7 +63,6 @@ onLogout | Event should be fired whenever a user logs out | -
         (t[i].init = []).push(arguments[0]);
       }, o = e.createElement(n), c = e.getElementsByTagName(n)[0], o.defer = 1, o.async = 1, o.src = "https://widgets.touch.global/sdk/index.js", c.parentNode.insertBefore(o, c);
       t[i]({
-        clientID: "bRUVL8o0KiMIDRBKojxECtTWp",
         methods: {
           showLogin: function() {
             window.yourInterface.viewLoginSignup();
