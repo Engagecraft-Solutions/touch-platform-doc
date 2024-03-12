@@ -51,8 +51,13 @@ By following the 2 steps below, you will be set up and ready to go:
 </body>
 </html>
 ```
+
+### Methods and Events
+[Documentation](https://github.com/Engagecraft-Solutions/touch-platform-doc/blob/main/doc/Methods_and_Events.md) 
+
 #### LIVE Example (updated 08 Jan 2024): ###
 https://jsfiddle.net/vn1fk5jc/
+
 
 
 ## Touch Widget Implementation || using an Iframe
@@ -77,8 +82,15 @@ https://jsfiddle.net/vn1fk5jc/
 #### LIVE Example (updated 08 Jan 2024): ###
 https://jsfiddle.net/yon0qbje/
 
-## Methods and Events
-[Documentation](https://github.com/Engagecraft-Solutions/touch-platform-doc/blob/main/doc/Methods_and_Events.md) 
+## Parameters (using web-component / using an Iframe)
+
+Name | Description | Example
+------------ | ------------ | ------------
+hash | - | -
+language | - | -
+demo | - | -
+source | - | -
+
 
 ## Touch Widget Implementation || In-App
 
