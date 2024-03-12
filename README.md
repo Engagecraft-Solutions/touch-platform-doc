@@ -47,12 +47,35 @@ By following the 2 steps below, you will be set up and ready to go:
 
 </head>
 <body>
-  <ec-touch-global id="3-QwbtYJWpUUxREoE" language="en"></ec-touch-global>
+  <ec-touch-global id="7-BGRSFilRpfOo6D" language="en"></ec-touch-global>
 </body>
 </html>
 ```
 #### LIVE Example (updated 08 Jan 2024): ###
 https://jsfiddle.net/vn1fk5jc/
+
+
+## Touch Widget Implementation || using an Iframe
+
+**STEP 1 (Each time you wish to publish a widget)**: Include iframe tag anywhere in your HTML pages, where you want to include the widget. Simply copy the widget embed code from the Touch platform and insert it in the BODY tag.
+
+```javascript
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Touch Widget Implementation</title>
+</head>
+<body>
+ <iframe src="https://widgets.touch.global/sdk/iframe.html?language=en&hash=7-BGRSFilRpfOo6D" width="100%" height="540px" frameBorder="0"></iframe>
+</body>
+</html>
+```
+
+#### LIVE Example (updated 08 Jan 2024): ###
+https://jsfiddle.net/yon0qbje/
 
 ## Methods and Events
 [Documentation](https://github.com/Engagecraft-Solutions/touch-platform-doc/blob/main/doc/Methods_and_Events.md) 
