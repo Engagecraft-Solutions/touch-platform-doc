@@ -51,8 +51,8 @@ By following the 2 steps below, you will be set up and ready to go:
 </body>
 </html>
 ```
-#### LIVE Example (updated 08 Jun 2022): ###
-https://jsfiddle.net/rhLc49sa/
+#### LIVE Example (updated 08 Jan 2024): ###
+https://jsfiddle.net/vn1fk5jc/
 
 ## Methods and Events
 [Documentation](https://github.com/Engagecraft-Solutions/touch-platform-doc/blob/main/doc/Methods_and_Events.md) 
