@@ -9,6 +9,7 @@ Name | Description | Return Value
 showLogin | Display the login/signup modal | void
 isUserLoggedIn | Determines whether the current visitor is a logged in user | Boolean
 getCurrentUserID | Retrieve logged in user ID from session | String or Integer
+getCurrentUserToken | Retrieve logged in user JWT | String
 getUserProfile | Retrieve logged in user info from session | <code>UserObject</code>
 doLogin | Initiate a login call to the SSO API | <code>Promise<AuthSuccess &#124; AuthFailed></code>
 doSignup | Initiate a signup call to the SSO API | <code>Promise<AuthSuccess &#124; AuthFailed></code>
