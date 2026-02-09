@@ -73,6 +73,9 @@ onLogout | Event should be fired whenever a user logs out | -
           getCurrentUserID: function() {
             return window.yourInterface.getCurrentUserID();
           },
+          getCurrentUserToken: function() {
+            return window.yourInterface.getCurrentUserToken();
+          },
           getUserProfile: function() {
             return window.yourInterface.getUserProfile();
           },
