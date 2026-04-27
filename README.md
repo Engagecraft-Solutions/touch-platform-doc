@@ -1,50 +1,80 @@
-# touch-platform-doc
+# Touch Platform Documentation
 
-## Touch Widget Implementation || using web-component
+## Overview
 
-[What are web components?](https://www.webcomponents.org/introduction) 
+This guide explains how to integrate **Touch widgets** into your website or application using either:
 
-To be able to publish from the Touch platform to your website or app, requires a simple script of web-component to be added to your page.
+* Web Components (recommended)
+* iFrame embedding
+* Native in-app WebViews (Android / iOS)
 
-By following the 2 steps below, you will be set up and ready to go:
+Touch widgets allow you to easily publish interactive content with minimal setup.
 
-**STEP 1**: Add the below code, if you want to be able to use widgets on your platform. You can either add this per page or put it in a central place (depending on your CMS setup).  We recommend putting this in a central place by inserting the script in the HEAD tag.
+---
 
-```javascript
+## 🚀 Quick Start (Web Component – Recommended)
+
+### Step 1: Load the Touch SDK
+
+Add the following script to your HTML.
+For best performance, include it globally in the `<head>` section.
+
+```html
 <script>
   !function(t, e, n, i, o, c) {
     if (!t[i]) {
       t[i] = function() {
         (t[i].init = []).push(arguments[0]);
-      }, o = e.createElement(n), c = e.getElementsByTagName(n)[0], o.defer = 1, o.async = 1, o.src = "https://widgets.touch.global/sdk/index.js", c.parentNode.insertBefore(o, c);
+      },
+      o = e.createElement(n),
+      c = e.getElementsByTagName(n)[0],
+      o.defer = 1,
+      o.async = 1,
+      o.src = "https://widgets.touch.global/sdk/index.js",
+      c.parentNode.insertBefore(o, c);
     }
   }(window, document, "script", "ecTouchPlatform");
 </script>
 ```
 
-**STEP 2 (Each time you wish to publish a widget)**: Include this tag anywhere in your HTML pages, where you want to include the widget. Simply copy the widget embed code from the Touch platform and insert it in the BODY tag. The above script registers new HTML element called "ec-touch-global" and this new element can be used anywhere in your HTML page.
-  
-### Example of STEP 1 and STEP 2: ###
+---
 
-```javascript
+### Step 2: Add the Widget
+
+Insert the custom element anywhere in your `<body>` where the widget should appear:
+
+```html
+<ec-touch-global id="YOUR_WIDGET_HASH" language="en"></ec-touch-global>
+```
+
+---
+
+### ✅ Full Example
+
+```html
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="mobile-web-app-capable" content="yes">
-  <title>Touch Widget Implementation</title>
-      
+  <title>Touch Widget Example</title>
+
   <script>
     !function(t, e, n, i, o, c) {
       if (!t[i]) {
         t[i] = function() {
           (t[i].init = []).push(arguments[0]);
-        }, o = e.createElement(n), c = e.getElementsByTagName(n)[0], o.defer = 1, o.async = 1, o.src = "https://widgets.touch.global/sdk/index.js", c.parentNode.insertBefore(o, c);
+        },
+        o = e.createElement(n),
+        c = e.getElementsByTagName(n)[0],
+        o.defer = 1,
+        o.async = 1,
+        o.src = "https://widgets.touch.global/sdk/index.js",
+        c.parentNode.insertBefore(o, c);
       }
     }(window, document, "script", "ecTouchPlatform");
   </script>
-
 </head>
 <body>
   <ec-touch-global id="7-BGRSFilRpfOo6D" language="en"></ec-touch-global>
@@ -52,53 +82,100 @@ By following the 2 steps below, you will be set up and ready to go:
 </html>
 ```
 
-### Methods and Events
-[Documentation](https://github.com/Engagecraft-Solutions/touch-platform-doc/blob/main/doc/Methods_and_Events.md) 
+---
 
-#### LIVE Example (updated 08 Jan 2024): ###
-https://jsfiddle.net/vn1fk5jc/
+## ⚙️ Widget Parameters
 
+| Parameter  | Description              | Example            |
+| ---------- | ------------------------ | ------------------ |
+| `hash`     | Unique widget identifier | `7-BGRSFilRpfOo6D` |
+| `language` | Widget language          | `en`               |
+| `demo`     | Enable demo mode         | `true`             |
+| `source`   | Custom source tracking (overrides  document.referrer)   | `homepage` |
+| `tag`   | Custom campaign tracking   | `brandA` |
 
+---
 
-## Touch Widget Implementation || using an Iframe
+## 📡 Methods & Events
 
-**STEP 1 (Each time you wish to publish a widget)**: Include iframe tag anywhere in your HTML pages, where you want to include the widget. Simply copy the widget embed code from the Touch platform and insert it in the BODY tag.
+Touch widgets expose methods and events for advanced control and integrations.
 
-```javascript
+👉 Documentation:
+https://github.com/Engagecraft-Solutions/touch-platform-doc/blob/main/doc/Methods_and_Events.md
+
+---
+
+## 🔗 Live Demo
+
+* Web Component: https://jsfiddle.net/vn1fk5jc/
+
+---
+
+## 🧩 Alternative: iFrame Integration
+
+If Web Components are not suitable for your environment, you can embed widgets using an iFrame.
+
+### Example
+
+```html
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="mobile-web-app-capable" content="yes">
-  <title>Touch Widget Implementation</title>
+  <title>Touch Widget iFrame</title>
 </head>
 <body>
- <iframe src="https://widgets.touch.global/sdk/iframe.html?language=en&hash=7-BGRSFilRpfOo6D" width="100%" height="540px" frameBorder="0"></iframe>
+  <iframe 
+    src="https://widgets.touch.global/sdk/iframe.html?language=en&hash=7-BGRSFilRpfOo6D"
+    width="100%" 
+    height="540px" 
+    frameborder="0">
+  </iframe>
 </body>
 </html>
 ```
 
-#### LIVE Example (updated 08 Jan 2024): ###
+---
+
+### 🔗 Live Demo (iFrame)
+
 https://jsfiddle.net/yon0qbje/
 
-## Parameters (using web-component / using an Iframe)
+---
 
-Name | Description | Example
------------- | ------------ | ------------
-hash | - | -
-language | - | -
-demo | - | -
-source | - | -
+## 📱 In-App Integration (experimential)
 
+Touch widgets can also be embedded inside mobile apps using WebViews.
 
-## Touch Widget Implementation || In-App
+### Android
 
-Touch content is [published/delivered] using WebViews. The WebView class is an extension of the Android and iOS View Class that allows web pages to be displayed in-App.
+👉 https://github.com/Engagecraft-Solutions/touch-platform-sdk-android
 
-### Implementation using In-App Android Integration
-[Documentation](https://github.com/Engagecraft-Solutions/touch-platform-sdk-android) 
+### iOS
 
-### Implementation using In-App iOS Integration
-[Documentation](https://github.com/Engagecraft-Solutions/touch-platform-widgets-ios) 
+👉 https://github.com/Engagecraft-Solutions/touch-platform-widgets-ios
 
+---
+
+## 💡 Best Practices
+
+* Load the SDK once globally (avoid duplicate script loads)
+* Use Web Components for best performance and flexibility
+* Use iFrame only when isolation is required or when your CMS does not support Web Components
+* Ensure responsive container sizing for optimal UX
+* Cache or lazy-load widgets if used heavily on a page
+
+---
+
+## ❓ Support
+
+If you encounter issues or need help integrating Touch widgets, please contact your platform provider or refer to the official repositories above.
+
+---
+
+## 📄 License
+
+© Engagecraft. All rights reserved.
+
+---
