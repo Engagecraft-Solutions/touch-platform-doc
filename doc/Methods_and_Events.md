@@ -1,67 +1,96 @@
-## Methods and Events ##
+## Methods and Events
 
-Methods and Events are required for the Touch Platform to communicate with a client’s SSO solution to ensure that a user of content created on the Touch Platform is recognised by the client’s SSO solution. Please refer to the tables below.
+The Touch Platform uses **methods** and **events** to integrate with a client’s Single Sign-On (SSO) system.
+These allow the platform to identify users and synchronize authentication state between the widget and your application.
 
-#### Methods ####
+> ⚠️ **Web Component Only**
+> Methods and events are only available when using the Web Component integration.
+> They are not supported in iFrame implementations.
 
-Name | Description | Return Value
------------- | ------------ | ------------
-showLogin | Display the login/signup modal | void
-isUserLoggedIn | Determines whether the current visitor is a logged in user | Boolean
-getCurrentUserID | Retrieve logged in user ID from session | String or Integer
-getUserProfile | Retrieve logged in user info from session | <code>UserObject</code>
-doLogin | Initiate a login call to the SSO API | <code>Promise<AuthSuccess &#124; AuthFailed></code>
-doSignup | Initiate a signup call to the SSO API | <code>Promise<AuthSuccess &#124; AuthFailed></code>
+---
 
-#### Events #### 
+## 🔧 Methods
 
-Name | Description | Params
------------- | ------------- | -------------
-onLoginSuccess | Event should be fired whenever a user logs in successfully | <code>UserObject</code>
-onLogout | Event should be fired whenever a user logs out | -
-    
-#### <code>UserObject</code> ####
+The following methods must be implemented to enable authentication and user data retrieval:
 
-```javascript
+| Name               | Description                                         | Return Value                         |
+| ------------------ | --------------------------------------------------- | ------------------------------------ |
+| `showLogin`        | Displays the login/signup interface                 | `void`                               |
+| `isUserLoggedIn`   | Returns whether the current user is authenticated   | `boolean`                            |
+| `getCurrentUserID` | Returns the unique identifier of the logged-in user | `string \| number`                   |
+| `getUserProfile`   | Returns the current user’s profile data             | `UserObject`                         |
+| `doLogin`          | Initiates login via your SSO system                 | `Promise<AuthSuccess \| AuthFailed>` |
+| `doSignup`         | Initiates signup via your SSO system                | `Promise<AuthSuccess \| AuthFailed>` |
+
+---
+
+## 📡 Events
+
+The following events must be emitted to notify the Touch Platform about authentication state changes:
+
+| Name             | Description                            | Parameters   |
+| ---------------- | -------------------------------------- | ------------ |
+| `onLoginSuccess` | Fired when a user successfully logs in | `UserObject` |
+| `onLogout`       | Fired when a user logs out             | `-`          |
+
+---
+
+## 🧩 Data Structures
+
+### `UserObject`
+
+```json id="f6v1z3"
 {
-    id: "",
-    name: "",
-    email: ""
+  "id": "",
+  "name": "",
+  "email": ""
 }
-```   
+```
 
-#### <code>AuthSuccess</code> ####
+---
 
-```javascript
+### `AuthSuccess`
+
+```json id="r0k9lp"
 {
-    success: true,
-    // UserObject
-    user: {
-        id: "",
-        name: "",
-        email: ""
-    }
+  "success": true,
+  "user": {
+    "id": "",
+    "name": "",
+    "email": ""
+  }
 }
-```  
- 
-#### <code>AuthFailed</code> ####
+```
 
-```javascript
+---
+
+### `AuthFailed`
+
+```json id="x2p8mw"
 {
-    success: false,
-    errorMessage: "An error occurred."
+  "success": false,
+  "errorMessage": "An error occurred."
 }
-```     
-    
-#### Example ###
+```
 
-```javascript
+---
+
+## 💡 Integration Example
+
+```html id="n7q4sd"
 <script>
   !function(t, e, n, i, o, c) {
     if (!t[i]) {
       t[i] = function() {
         (t[i].init = []).push(arguments[0]);
-      }, o = e.createElement(n), c = e.getElementsByTagName(n)[0], o.defer = 1, o.async = 1, o.src = "https://widgets.touch.global/sdk/index.js", c.parentNode.insertBefore(o, c);
+      },
+      o = e.createElement(n),
+      c = e.getElementsByTagName(n)[0],
+      o.defer = 1,
+      o.async = 1,
+      o.src = "https://widgets.touch.global/sdk/index.js",
+      c.parentNode.insertBefore(o, c);
+
       t[i]({
         methods: {
           showLogin: function() {
@@ -77,23 +106,27 @@ onLogout | Event should be fired whenever a user logs out | -
             return window.yourInterface.getUserProfile();
           },
           doLogin: function(credentials) {
-            return window.yourInterface.login(credentials.email, credentials.password);
+            return window.yourInterface.login(
+              credentials.email,
+              credentials.password
+            );
           },
           doSignup: function(payload) {
-            return window.yourInterface.signup(payload.email, payload.password);
-          },
+            return window.yourInterface.signup(
+              payload.email,
+              payload.password
+            );
+          }
         },
-        events: function() {
 
+        events: function() {
           const eventEmitter = window.yourInterface.getEventEmitter();
 
-          eventEmitter.on("onLoginSuccess", function() {
-            // Fire onLoginSuccess event
-            window.ecTouchPlatform.events.emit("onLoginSuccess", AuthSuccess);
+          eventEmitter.on("onLoginSuccess", function(user) {
+            window.ecTouchPlatform.events.emit("onLoginSuccess", user);
           });
 
           eventEmitter.on("onLogout", function() {
-            // Fire onLogout event
             window.ecTouchPlatform.events.emit("onLogout");
           });
         }
@@ -102,3 +135,15 @@ onLogout | Event should be fired whenever a user logs out | -
   }(window, document, "script", "ecTouchPlatform");
 </script>
 ```
+
+---
+
+## ✅ Notes & Best Practices
+
+* Ensure all methods return the correct types as defined above
+* Always resolve/reject Promises for `doLogin` and `doSignup`
+* Emit events immediately after authentication state changes
+* Keep your `UserObject` consistent across all methods and events
+* Avoid exposing sensitive user data beyond what is required
+
+---
