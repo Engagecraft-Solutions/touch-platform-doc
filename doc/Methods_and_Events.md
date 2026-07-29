@@ -1,149 +1,184 @@
-## Methods and Events
+# Authentication Integration
 
-The Touch Platform uses **methods** and **events** to integrate with a client’s Single Sign-On (SSO) system.
-These allow the platform to identify users and synchronize authentication state between the widget and your application.
+The Touch Platform integrates with your application's authentication system through a small set of **methods** and **events**. These APIs allow the platform to identify authenticated users, initiate authentication flows, and remain synchronized with your application's authentication state.
 
 > ⚠️ **Web Component Only**
-> Methods and events are only available when using the Web Component integration.
-> They are not supported in iFrame implementations.
+>
+> Authentication methods and events are available **only** when using the **Web Component** integration. They are **not supported** when using the iFrame integration.
 
 ---
 
-## 🔧 Methods
+# Methods
 
-The following methods must be implemented to enable authentication and user data retrieval:
+Implement the following methods when initializing the Touch Platform.
 
-| Name               | Description                                         | Return Value                         |
-| ------------------ | --------------------------------------------------- | ------------------------------------ |
-| `showLogin`        | Displays the login/signup interface                 | `void`                               |
-| `isUserLoggedIn`   | Returns whether the current user is authenticated   | `boolean`                            |
-| `getCurrentUserID` | Returns the unique identifier of the logged-in user | `string \| number`                   |
-| `getUserProfile`   | Returns the current user’s profile data             | `UserObject`                         |
-| `doLogin`          | Initiates login via your SSO system                 | `Promise<AuthSuccess \| AuthFailed>` |
-| `doSignup`         | Initiates signup via your SSO system                | `Promise<AuthSuccess \| AuthFailed>` |
-
----
-
-## 📡 Events
-
-The following events must be emitted to notify the Touch Platform about authentication state changes:
-
-| Name             | Description                            | Parameters   |
-| ---------------- | -------------------------------------- | ------------ |
-| `onLoginSuccess` | Fired when a user successfully logs in | `UserObject` |
-| `onLogout`       | Fired when a user logs out             | `-`          |
+| Method | Description | Returns |
+|---------|-------------|---------|
+| `showLogin()` | Opens your application's login or sign-up interface. | `void` |
+| `getUser()` | Returns the currently authenticated user, or `null` if no user is signed in. | `User \| null` |
+| `login(credentials)` | Authenticates a user using your application's authentication provider. | `Promise<AuthResult>` |
+| `signup(payload)` | Registers a new user using your application's authentication provider. | `Promise<AuthResult>` |
+| `getAuthorizationHeaders()` | Returns the HTTP headers required to authenticate requests. | `Record<string, string>` |
 
 ---
 
-## 🧩 Data Structures
+# Events
 
-### `UserObject`
+Emit the following event whenever the user's authentication state changes.
 
-```json id="f6v1z3"
-{
-  "id": "",
-  "name": "",
-  "email": ""
+| Event | Description | Payload |
+|-------|-------------|---------|
+| `authStateChanged` | Emitted whenever the user's authentication state changes (login, logout, session refresh, or session expiration). | `AuthState` |
+
+> **Note**
+>
+> The `authStateChanged` event replaces separate login and logout events. The Touch Platform derives the current authentication state from the event payload, providing a simpler and more reliable integration.
+
+---
+
+# TypeScript Types
+
+## `User`
+
+```ts
+export interface User {
+  id: string;
+  name: string;
+  email: string;
 }
 ```
 
 ---
 
-### `AuthSuccess`
+## `LoginCredentials`
 
-```json id="r0k9lp"
-{
-  "success": true,
-  "user": {
-    "id": "",
-    "name": "",
-    "email": ""
-  }
+```ts
+export interface LoginCredentials {
+  email: string;
+  password: string;
 }
 ```
 
 ---
 
-### `AuthFailed`
+## `SignupPayload`
 
-```json id="x2p8mw"
-{
-  "success": false,
-  "errorMessage": "An error occurred."
+```ts
+export interface SignupPayload {
+  email: string;
+  password: string;
 }
 ```
 
 ---
 
-## 💡 Integration Example
+## `AuthSuccess`
 
-```html id="n7q4sd"
+```ts
+export interface AuthSuccess {
+  success: true;
+  user: User;
+}
+```
+
+---
+
+## `AuthFailed`
+
+```ts
+export interface AuthFailed {
+  success: false;
+  error: string;
+}
+```
+
+---
+
+## `AuthResult`
+
+```ts
+export type AuthResult = AuthSuccess | AuthFailed;
+```
+
+---
+
+## `AuthState`
+
+```ts
+export interface AuthState {
+  authenticated: boolean;
+  user: User | null;
+}
+```
+
+---
+
+# Integration Example
+
+```html
 <script>
-  !function(t, e, n, i, o, c) {
+  !(function (t, e, n, i, o, c) {
     if (!t[i]) {
-      t[i] = function() {
+      t[i] = function () {
         (t[i].init = []).push(arguments[0]);
-      },
-      o = e.createElement(n),
-      c = e.getElementsByTagName(n)[0],
-      o.defer = 1,
-      o.async = 1,
-      o.src = "https://widgets.touch.global/sdk/index.js",
+      };
+
+      o = e.createElement(n);
+      c = e.getElementsByTagName(n)[0];
+      o.async = true;
+      o.src = "https://widgets.touch.global/sdk/index.js";
       c.parentNode.insertBefore(o, c);
 
       t[i]({
         methods: {
-          showLogin: function() {
-            window.yourInterface.viewLoginSignup();
+          showLogin() {
+            window.yourInterface.showLogin();
           },
-          isUserLoggedIn: function() {
-            return window.yourInterface.isLoggedIn();
+
+          getUser() {
+            return window.yourInterface.getCurrentUser();
           },
-          getCurrentUserID: function() {
-            return window.yourInterface.getCurrentUserID();
-          },
-          getUserProfile: function() {
-            return window.yourInterface.getUserProfile();
-          },
-          doLogin: function(credentials) {
+
+          login(credentials) {
             return window.yourInterface.login(
               credentials.email,
               credentials.password
             );
           },
-          doSignup: function(payload) {
+
+          signup(payload) {
             return window.yourInterface.signup(
               payload.email,
               payload.password
             );
+          },
+
+          getAuthorizationHeaders() {
+            return {
+              Authorization: `Bearer ${window.yourInterface.getAccessToken()}`
+            };
           }
-        },
-
-        events: function() {
-          const eventEmitter = window.yourInterface.getEventEmitter();
-
-          eventEmitter.on("onLoginSuccess", function(user) {
-            window.ecTouchPlatform.events.emit("onLoginSuccess", user);
-          });
-
-          eventEmitter.on("onLogout", function() {
-            window.ecTouchPlatform.events.emit("onLogout");
-          });
         }
       });
     }
-  }(window, document, "script", "ecTouchPlatform");
+  })(window, document, "script", "ecTouchPlatform");
 </script>
 ```
 
 ---
 
-## ✅ Notes & Best Practices
+# Best Practices
 
-* Ensure all methods return the correct types as defined above
-* Always resolve/reject Promises for `doLogin` and `doSignup`
-* Emit events immediately after authentication state changes
-* Keep your `UserObject` consistent across all methods and events
-* Avoid exposing sensitive user data beyond what is required
+- Always return the expected TypeScript types.
+- Resolve `login()` and `signup()` with an `AuthResult`. Avoid throwing exceptions for expected authentication failures such as invalid credentials.
+- Return `null` from `getUser()` when no authenticated user exists.
+- Emit `authStateChanged` immediately after any authentication state transition, including:
+  - User signs in
+  - User signs out
+  - Session is refreshed
+  - Session expires
+- Keep the `User` object consistent throughout your application.
+- Only expose user information required by the Touch Platform.
+- Ensure `getAuthorizationHeaders()` always returns fresh authorization headers after access tokens are renewed.
 
 ---
