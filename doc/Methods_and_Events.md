@@ -18,7 +18,7 @@ Implement the following methods when initializing the Touch Platform.
 | `getUser()` | Returns the currently authenticated user, or `null` if no user is signed in. | `User \| null` |
 | `login(credentials)` | Authenticates a user using your application's authentication provider. | `Promise<AuthResult>` |
 | `signup(payload)` | Registers a new user using your application's authentication provider. | `Promise<AuthResult>` |
-| `getAuthorizationHeaders()` | Returns the HTTP headers required to authenticate requests. | `Record<string, string>` |
+| `getAuthorizationHeaders()` | Returns the HTTP headers required to authenticate requests. |  `Promise<string \| null>` |
 
 ---
 
