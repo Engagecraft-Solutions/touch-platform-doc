@@ -1,46 +1,66 @@
 # Authentication Integration
 
-The Touch Platform integrates with your application's authentication system through a small set of **methods** and **events**. These APIs allow the platform to identify authenticated users, initiate authentication flows, synchronize authentication state, and react to runtime configuration changes.
+The Touch Platform integrates with your application's authentication system through a small set of methods and events.
 
-> ⚠️ **Web Component Only**
+These APIs allow the platform to:
+
+- Identify authenticated users
+- Trigger your application's login flow
+- Synchronize authentication state
+- Authenticate backend requests
+- React to runtime configuration changes
+
+> **Web Component Only**
 >
-> Authentication methods and events are available **only** when using the **Web Component** integration. They are **not supported** when using the iFrame integration.
+> Authentication integration is supported **only** by the **Web Component** integration.
+> It is **not available** when using the iFrame integration.
+
+---
+
+# Configuration
+
+The following initialization options control how the Touch Platform integrates with your authentication system.
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `waitForSSO` | `boolean` | Delays widget and layout rendering until the initial authentication state has been resolved. The platform waits for either `getUser()` to resolve or the first `authStateChanged` event. If no authenticated user is available (`getUser()` returns `null` or `authStateChanged` is emitted with `authenticated: false`), the render lock is released and the widget starts in the anonymous state. |
+| `authGuard` | `string` | Identifies the authentication provider used by your application. When specified, the Touch Platform sends the `x-api-client-auth-provider` header together with authenticated requests. This allows the backend to determine how the `Authorization` header should be validated. This option is only applicable when `getAuthorizationHeaders()` is implemented. |
 
 ---
 
 # Methods
 
-Implement the following methods when initializing the Touch Platform.
+Implement the following methods when initializing the widget.
 
-| Method | Description | Returns |
-|---------|-------------|---------|
-| `showLogin()` | Opens your application's login or sign-up interface. | `void` |
-| `getUser()` | Returns the currently authenticated user, or `null` if no user is signed in. | `User \| null` |
-| `login(credentials)` | Authenticates a user using your application's authentication provider. | `Promise<AuthResult>` |
-| `signup(payload)` | Registers a new user using your application's authentication provider. | `Promise<AuthResult>` |
-| `getAuthorizationHeaders()` | Returns the HTTP authorization headers required to authenticate requests made by the Touch Platform. Always return fresh headers after access tokens are renewed. | `Promise<Record<string, string> \| null>` |
+| Method | Returns | Description |
+|---------|---------|-------------|
+| `showLogin()` | `void` | Opens your application's login or sign-up UI. |
+| `getUser()` | `User \| null` | Returns the currently authenticated user. |
+| `login(credentials)` | `Promise<AuthResult>` | Authenticates a user. |
+| `signup(payload)` | `Promise<AuthResult>` | Registers a new user. |
+| `getAuthorizationHeaders()` | `Promise<Record<string, string> \| null>` | Returns fresh authorization headers for authenticated backend requests. |
 
 ---
 
 # Events
 
-The Touch Platform communicates with the host application through the following events. These events keep authentication, widget lifecycle, and runtime configuration synchronized.
+The Touch Platform communicates with the host application through the following events.
 
-| Event | Description | Payload |
-|-------|-------------|---------|
-| `attributeChanged` | Emitted whenever one or more widget attributes are updated at runtime. Supported attributes (such as language, theme, currency, or other configuration values) are applied immediately without requiring a full widget reload. | `AttributeChangedEvent` |
-| `authStateChanged` | Emitted whenever the user's authentication state changes, including login, logout, session refresh, session expiration, or profile updates. The Touch Platform synchronizes its SSO session using the provided authentication state and user information. | `AuthState` |
-| `reloadWidget` | Requests a complete widget restart. The current instance is destroyed and a new instance is initialized using the latest configuration and authentication state. | `void` |
+| Event | Payload | Description |
+|------|---------|-------------|
+| `attributeChanged` | `AttributeChangedEvent` | Applies supported runtime configuration changes without reloading the widget. |
+| `authStateChanged` | `AuthState` | Synchronizes authentication state with the Touch Platform. |
+| `reloadWidget` | `void` | Requests a complete widget reinitialization. |
 
-> **Note**
+> **Important**
 >
-> `authStateChanged` is the primary event responsible for synchronizing authentication between the Touch Platform and the host application. Always emit this event immediately after any authentication state transition.
+> Always emit `authStateChanged` immediately after any authentication state transition.
 
 ---
 
-# TypeScript Types
+# Types
 
-## `User`
+## User
 
 ```ts
 export interface User {
@@ -50,9 +70,7 @@ export interface User {
 }
 ```
 
----
-
-## `LoginCredentials`
+## LoginCredentials
 
 ```ts
 export interface LoginCredentials {
@@ -61,9 +79,7 @@ export interface LoginCredentials {
 }
 ```
 
----
-
-## `SignupPayload`
+## SignupPayload
 
 ```ts
 export interface SignupPayload {
@@ -72,9 +88,7 @@ export interface SignupPayload {
 }
 ```
 
----
-
-## `AuthSuccess`
+## AuthSuccess
 
 ```ts
 export interface AuthSuccess {
@@ -83,9 +97,7 @@ export interface AuthSuccess {
 }
 ```
 
----
-
-## `AuthFailed`
+## AuthFailed
 
 ```ts
 export interface AuthFailed {
@@ -94,17 +106,13 @@ export interface AuthFailed {
 }
 ```
 
----
-
-## `AuthResult`
+## AuthResult
 
 ```ts
 export type AuthResult = AuthSuccess | AuthFailed;
 ```
 
----
-
-## `AuthState`
+## AuthState
 
 ```ts
 export interface AuthState {
@@ -113,19 +121,19 @@ export interface AuthState {
 }
 ```
 
+---
+
 # Event Behavior
 
-## `authStateChanged`
+## authStateChanged
 
-Emit this event whenever the authentication state changes.
-
-Examples include:
+Emit this event whenever authentication changes, including:
 
 - User signs in
 - User signs out
-- Session is refreshed
-- Session expires
-- User profile information changes
+- Session refresh
+- Session expiration
+- User profile updates
 
 Example:
 
@@ -140,79 +148,83 @@ Example:
 }
 ```
 
-If either of the following conditions is true:
+If:
 
-- `authenticated === false`
+- `authenticated === false`, or
 - `user === null`
 
-the Touch Platform automatically terminates the authenticated SSO session and transitions to the anonymous state. The Touch Platform also clears its own temporary authenticated session.
+the Touch Platform automatically terminates its authenticated session and switches to anonymous mode.
 
 ---
 
-## `reloadWidget`
+## reloadWidget
 
-Requests a complete widget restart.
+Recreates the widget using the latest configuration.
 
-When handled:
+When handling this event:
 
-- the current widget instance should be destroyed;
-- all runtime state should be discarded;
-- a new widget instance should be initialized using the latest embed configuration and authentication state.
+- Destroy the current widget instance.
+- Clear any runtime state.
+- Initialize a new widget using the latest configuration and authentication state.
 
-This event is typically used after configuration changes that cannot be applied dynamically.
+---
 
 # Integration Example
 
 ```html
 <script>
-  !(function (t, e, n, i, o, c) {
-    if (!t[i]) {
-      t[i] = function () {
-        (t[i].init = []).push(arguments[0]);
-      };
+!(function (t, e, n, i, o, c) {
+  if (!t[i]) {
+    t[i] = function () {
+      (t[i].init = []).push(arguments[0]);
+    };
 
-      o = e.createElement(n);
-      c = e.getElementsByTagName(n)[0];
-      o.async = true;
-      o.src = "https://widgets.touch.global/sdk/index.js";
-      c.parentNode.insertBefore(o, c);
+    o = e.createElement(n);
+    c = e.getElementsByTagName(n)[0];
+    o.async = true;
+    o.src = "https://widgets.touch.global/sdk/index.js";
+    c.parentNode.insertBefore(o, c);
 
-      t[i]({
-        waitForSSO: true,
-        authGuard: 'gh-epl',
-        onLoaded: (touch) => {}
-        methods: {
-          showLogin() {
-            window.yourInterface.showLogin();
-          },
+    t[i]({
+      waitForSSO: true,
+      authGuard: "gh-epl",
 
-          async getUser() {
-            return window.yourInterface.getCurrentUser();
-          },
-
-          login(credentials) {
-            return window.yourInterface.login(
-              credentials.email,
-              credentials.password
-            );
-          },
-
-          signup(payload) {
-            return window.yourInterface.signup(
-              payload.email,
-              payload.password
-            );
-          },
-
-          async getAuthorizationHeaders() {
-            return {
-              Authorization: `Bearer ${window.yourInterface.getAccessToken()}`
-            };
-          }
+      methods: {
+        showLogin() {
+          window.yourInterface.showLogin();
         },
-      });
-    }
-  })(window, document, "script", "ecTouchPlatform");
+
+        async getUser() {
+          return window.yourInterface.getCurrentUser();
+        },
+
+        login(credentials) {
+          return window.yourInterface.login(
+            credentials.email,
+            credentials.password
+          );
+        },
+
+        signup(payload) {
+          return window.yourInterface.signup(
+            payload.email,
+            payload.password
+          );
+        },
+
+        async getAuthorizationHeaders() {
+          return {
+            Authorization: `Bearer ${window.yourInterface.getAccessToken()}`
+          };
+        }
+      },
+
+      onLoaded(touch) {
+        // Widget loaded
+      }
+    });
+  }
+})(window, document, "script", "ecTouchPlatform");
 </script>
 ```
 
@@ -221,10 +233,11 @@ This event is typically used after configuration changes that cannot be applied 
 # Best Practices
 
 - Always return the expected TypeScript types.
-- Resolve `login()` and `signup()` with an `AuthResult`. Do not throw exceptions for expected authentication failures such as invalid credentials.
-- Return `null` from `getUser()` whenever no authenticated user exists.
-- Emit `authStateChanged` immediately after every authentication state transition, including login, logout, session refresh, session expiration, or user profile updates.
-- Keep the `User` object consistent throughout your application. Only expose user information required by the Touch Platform
-- Ensure `getAuthorizationHeaders()` always returns fresh authorization headers after access tokens are renewed.
-- Prefer `attributeChanged` for runtime configuration updates instead of reloading the widget whenever supported.
-- Use `reloadWidget` only when configuration changes require a complete reinitialization.
+- Return `null` from `getUser()` when no user is authenticated.
+- Resolve `login()` and `signup()` with an `AuthResult`. Do not throw for expected authentication failures.
+- Always emit `authStateChanged` after authentication changes.
+- Keep the `User` object consistent throughout your application.
+- Return fresh authorization headers after token renewal.
+- Use `waitForSSO` when authentication must be resolved before rendering.
+- Use `authGuard` only together with `getAuthorizationHeaders()`.
+- Prefer `attributeChanged` over `reloadWidget` whenever possible.
