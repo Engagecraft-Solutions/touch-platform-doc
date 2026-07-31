@@ -220,7 +220,25 @@ When handling this event:
       },
 
       onLoaded(touch) {
-        // Widget loaded
+        const eventEmitter = window.yourInterface.getEventEmitter();
+
+        eventEmitter.on("onLoginSuccess", function (data) {
+          touch.events.emit("authStateChanged", {
+            authenticated: true,
+            user: {
+              id: data.id,
+              name: data.name,
+              email: data.email
+            }
+          });
+        });
+
+        eventEmitter.on("onLogout", function () {
+          touch.events.emit("authStateChanged", {
+            authenticated: false,
+            user: null
+          });
+        });
       }
     });
   }
